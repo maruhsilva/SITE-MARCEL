@@ -16,17 +16,25 @@
     box-sizing: border-box;
 }
 
-/* CORREÇÃO DO ESPAÇO LATERAL (BUG M23) */
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden; /* Corta o excesso lateral */
-    position: relative;
+/* --- CORREÇÃO DO OVERFLOW (ESPAÇO LATERAL) --- */
+html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    width: 100%;           /* Força a largura da tela */
+    max-width: 100%;       /* Impede crescimento além da tela */
+    overflow-x: hidden;    /* Corta o excesso lateral */
+}
+
+body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
+    width: 100%;           /* Força a largura da tela */
+    max-width: 100%;       /* Impede crescimento além da tela */
+    overflow-x: hidden;    /* Corta o excesso lateral */
+    position: relative;    /* Ajuda a segurar elementos posicionados */
 }
+/* ----------------------------------------------- */
 
 ul {
     list-style: none;
@@ -56,22 +64,37 @@ a {
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Garante alinhamento vertical Logo/Icone */
-    padding: 1rem 20px;
+    align-items: center;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Configuração do Logo Imagem */
 .logo img {
-    height: 50px;
-    width: auto;
+    height: 100px; 
+    width: auto; 
     display: block;
     transition: var(--transition);
 }
 
 .logo img:hover {
     opacity: 0.9;
+}
+
+/* Ajuste para Celulares */
+@media (max-width: 768px) {
+    .logo img {
+        height: 90px;
+    }
+    
+    /* Previne que o padding do menu cause overflow em telas muito pequenas */
+    .navbar {
+        padding: 1rem 1.2rem; 
+    }
+}
+
+.highlight {
+    color: var(--secondary-color);
 }
 
 .nav-menu {
@@ -105,59 +128,40 @@ a {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 100vh; /* Alterado de height para min-height para evitar cortes em telas pequenas */
     width: 100%;
-    /* Substitua 'hero-bg.jpg' pelo nome da sua foto de fundo */
-    background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.75)), url('hero-bg.jpg');
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('Gemini_Generated_Image_9zdqn19zdqn19zdq.png');
     background-size: cover;
-    background-position: center bottom; /* Foca na parte de baixo (mãos) */
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--white);
-    padding: 80px 20px 20px;
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+    padding-top: 60px;
+    overflow: hidden; /* Garante que a imagem não vaze */
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
-.hero-content .subtitle {
+.hero-content p {
     font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--secondary-color);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1.5rem;
-    display: block;
-}
-
-.hero-content .description {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    color: #e0e0e0;
 }
 
 /* Buttons */
 .btn-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-block;
     background-color: var(--secondary-color);
     color: var(--white);
-    padding: 14px 35px;
+    padding: 12px 30px;
     border-radius: 50px;
     font-weight: 600;
     font-size: 1.1rem;
@@ -211,21 +215,20 @@ a {
 }
 
 .about-list li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     font-size: 1.1rem;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .about-list i {
     color: var(--accent-color);
-    font-size: 1.2rem;
 }
 
 .about-image img {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: var(--shadow);
 }
 
@@ -248,28 +251,26 @@ a {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 
 .service-card {
     background: var(--white);
-    padding: 2.5rem 2rem;
-    border-radius: 12px;
+    padding: 2rem;
+    border-radius: 10px;
     box-shadow: var(--shadow);
     text-align: center;
     transition: var(--transition);
-    border-bottom: 3px solid transparent;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-bottom: 3px solid var(--secondary-color);
 }
 
 .icon-box {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: rgba(230, 126, 34, 0.1);
     border-radius: 50%;
     display: flex;
@@ -279,14 +280,13 @@ a {
 }
 
 .icon-box i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--secondary-color);
 }
 
 .service-card h3 {
     margin-bottom: 1rem;
     color: var(--primary-color);
-    font-size: 1.4rem;
 }
 
 .cta-banner {
@@ -295,6 +295,11 @@ a {
     padding: 2rem;
     background-color: #e8f4f8;
     border-radius: 10px;
+}
+
+.cta-banner h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
 }
 
 /* Contact Section */
@@ -311,118 +316,66 @@ a {
 .contact-info h2 {
     margin-bottom: 1rem;
     color: var(--primary-color);
-    font-size: 2.5rem;
 }
 
 .info-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 
 .info-item i {
     font-size: 1.5rem;
     color: var(--secondary-color);
-    margin-top: 5px;
+    width: 30px;
 }
 
 .contact-form {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 15px;
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 10px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
-    border: 1px solid #eee;
+    gap: 1rem;
 }
 
 .contact-form input,
 .contact-form textarea {
-    padding: 16px;
+    padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 5px;
     font-family: inherit;
     font-size: 1rem;
-    transition: var(--transition);
-    width: 100%;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-}
-
-.contact-form button {
-    width: 100%;
-    justify-content: center;
 }
 
 /* Footer */
 .footer {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 70px 0 20px;
+    padding: 60px 0 20px;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-/* Logo Rodapé Branco */
-.logo-footer {
-    height: 60px;
-    width: auto;
-    display: block;
-    margin-bottom: 1rem;
-    filter: brightness(0) invert(1); /* Torna branco */
-    opacity: 0.9;
-    transition: all 0.3s ease;
-}
-
-.logo-footer:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.trust-badges {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.trust-badges span {
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-.footer-links h4, .footer-social h4 {
-    margin-bottom: 1.5rem;
-    color: var(--secondary-color);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .footer-links ul li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links a:hover {
     color: var(--secondary-color);
-    padding-left: 5px;
-    transition: var(--transition);
 }
 
 .social-icons {
@@ -431,40 +384,88 @@ a {
 }
 
 .social-icons a {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background-color: rgba(255,255,255,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: var(--transition);
-    color: var(--white);
 }
 
 .social-icons a:hover {
     background-color: var(--secondary-color);
-    transform: translateY(-3px);
 }
 
 .copyright {
     text-align: center;
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 25px;
+    padding-top: 20px;
     font-size: 0.9rem;
     color: #bdc3c7;
 }
 
-/* Animation Classes */
+/* Animations Classes */
 .hidden {
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease-out;
+    transform: translateY(50px);
+    transition: all 1s ease;
 }
 
 .show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Media Queries (Mobile) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--white);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-item {
+        margin: 16px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .about-grid, .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        order: -1;
+    }
 }
 
 /* --- Botão Flutuante WhatsApp --- */
@@ -490,6 +491,7 @@ a {
 .btn-whatsapp-floating:hover {
     background-color: #128c7e;
     transform: scale(1.1);
+    text-decoration: none;
     color: #ffffff;
 }
 
@@ -499,52 +501,7 @@ a {
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* RESPONSIVIDADE (Mobile) */
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 75px; /* Ajuste se o header ficar maior/menor */
-        gap: 0;
-        flex-direction: column;
-        background-color: var(--white);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
-        padding: 20px 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-item { margin: 16px 0; }
-
-    .logo img { height: 40px; } /* Logo menor no celular */
-
-    .hero-content h1 { font-size: 2.2rem; }
-    .hero-content .subtitle { font-size: 1rem; }
-    .hero-content .description { padding: 0 10px; }
-
-    .about-grid, .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .about-image { order: -1; }
-    
-    .contact-form { padding: 1.5rem; }
-
-    /* Ajuste do botão flutuante */
     .btn-whatsapp-floating {
         bottom: 20px;
         right: 20px;
@@ -552,4 +509,39 @@ a {
         height: 55px;
         font-size: 28px;
     }
+}
+
+/* --- Ajustes do Logo no Rodapé --- */
+.logo-footer {
+    height: 110px;
+    width: auto;
+    display: block;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1); 
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.logo-footer:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* --- Selos de Confiança --- */
+.trust-badges {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 15px;
+}
+
+.trust-badges span {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 10px;
+    border-radius: 4px;
 }
