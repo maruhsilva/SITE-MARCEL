@@ -130,7 +130,7 @@ a {
 .hero {
     min-height: 100vh; /* Alterado de height para min-height para evitar cortes em telas pequenas */
     width: 100%;
-    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('Gemini_Generated_Image_9zdqn19zdqn19zdq.png');
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('img/Gemini_Generated_Image_9zdqn19zdqn19zdq.png');
     background-size: cover;
     background-position: center;
     display: flex;
